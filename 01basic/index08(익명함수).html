@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //  func(); // 호이스팅 X
+
+        var func = function (){
+            console.log("익명 함수 호출");
+        }
+
+        func();
+
+        var func2 = function(a, b){
+            return a + b;
+        }
+
+        console.log(func2(1,2));
+
+        console.log("-------------------------------");
+
+
+        var method = function(a){
+            if(a % 2 == 0){
+                console.log("짝수입니다.");
+            } else {
+                console.log("홀수입니다.");
+            }
+        }
+
+
+        var print = function(a,b,c,d) {
+            var result = parseInt((b + c + d) / 3)
+            return a +  "님의 평균은 : " + result;
+        }
+
+
+
+        method(10);
+        console.log(print('홍길동', 88,90, 90));
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

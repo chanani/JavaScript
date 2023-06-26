@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        var a = 1;
+        while (a <= 10) {
+            console.log(a);
+            a++;
+        }
+
+        for (var i = 1; i <= 10; i++) {
+            console.log(i);
+        }
+
+        console.log("------------------");
+        var arr = [1, 2, 3, 4, 5];
+
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+        }
+
+        console.log("------------------");
+        // 빈 배열에 1~10까지 값을 저장
+
+        var arr = [];
+        for (var i = 1; i <= 10; i++) {
+            arr.push(i);
+        }
+        console.log(arr);
+
+
+        console.log("------------------");
+
+        // 인덱스를 i에 담습니다.
+        for (var i in arr) { // 1~10
+            console.log("인덱스", i);
+            console.log("값 : ", arr[i]);
+        }
+
+        var obj = { '1': '홍길동', '2': '이순신' }; // 자바의 map == JS객체
+
+        for(var i in obj){
+            console.log("키 : ", i); // 키
+            console.log("값 : ", obj[i]) // 값
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
