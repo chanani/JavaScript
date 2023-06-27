@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h1>할일 목록 만들기</h1>
+
+    <div>
+        <div class="namebox">
+            <input type="text" placeholder="이름을 입력하세요.">
+            <button id="nameBtn">확인</button>
+        </div>
+        <div class="todolist">
+            <input type="text" placeholder="당신의 할일을 적으세요.">
+            <button id="todoBtn">확인</button>
+            <ul class="listbox">
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        var nameBtn = document.getElementById("nameBtn");
+        var todoBtn = document.getElementById("todoBtn");
+        var put = document.getElementsByTagName("input");
+
+        nameBtn.onclick = function () {
+
+            console.log(put);
+            var text = put[0].value;
+            var h2 = document.createElement("h2");
+            h2.innerHTML = text + "님 환영합니다.";
+            var namebox = document.querySelector(".namebox");
+
+            namebox.appendChild(h2);
+            put[0].remove();
+            nameBtn.remove();
+        }
+
+        todoBtn.onclick = function () {
+            var ul = document.querySelector(".listbox")
+            var li = document.createElement("li");
+            var sum = '<button onclick="x()">x</button>'
+            if (put.length == 2) {
+                li.innerHTML = put[1].value + sum;
+                ul.appendChild(li);
+                put[1].value = "";
+            } else {
+                li.innerHTML = put[0].value + sum;
+                ul.appendChild(li);
+                put[0].value = "";
+            }
+        }
+        
+        function x(){
+            var li = document.getElementsByTagName("li");
+            li[0].remove();
+        }
+
+    </script>
+
+
+</body>
+
+</html>
