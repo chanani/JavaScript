@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style type="text/css">
+        .center {
+            text-align: center;
+        }
+
+        .content {
+            overflow: hidden;
+            border: 1px solid #777;
+        }
+
+        .content,
+        .content .left,
+        .content .right {
+            width: 50%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .content .right,
+        .content .left {
+            float: left;
+            position: relative;
+        }
+
+        .left .inner,
+        .right .inner {
+            border: 1px solid #777;
+            height: 300px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .cat > img {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            right: 10px;
+            bottom: 30px;
+
+        }
+        .cat1 > img {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            left: 10px;
+            bottom: 80px;
+
+        }
+        .cat2 > img {
+            height: 70px;
+            width: 70px;
+            position: absolute;
+            left: 30px;
+            bottom: 180px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--스크립트를 싹 지우고 버튼에 2개로 변경합니다-->
+    <header>
+        <div class="center">
+            <h2>토글형태 활용하기</h2>
+            <button id="btn1" class="dark">어둡게보기</button>
+            <button id="btn2" class="name">이름보기</button>
+            <!--<button id="btn3" class="write">메모장모드</button>-->
+
+            <!--추가-->
+            <hr>
+        </div>
+    </header>
+
+    <section>
+        <div class="content">
+            <div class="left">
+                <div class="inner"><img src="img/1.gif"></div>
+                <div class="cat"><img src="img/cat.png" alt=""></div>
+                <div class="cat1"><img src="img/3.png" alt=""></div>
+                <div class="cat2"><img src="img/2.png" alt=""></div>
+
+            </div>
+            <div class="right">
+                <div class="inner1">
+                    <p>자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고
+                        있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다</p>
+                    <a href="https://www.naver.com">위키백과</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var no = document.querySelectorAll("h2, p, a");
+        var inner1 = document.querySelector('.inner1');
+
+        btn1.onclick = function () {
+            if (btn1.classList.contains('dark') === true) {
+                btn1.classList.remove('dark');
+                btn1.classList.add("white");
+                document.body.style.backgroundColor = "black"
+                btn1.innerHTML = "밝게보기";
+
+                for (var i = 0; i < no.length; i++) {
+                    no[i].style.color = "white";
+                }
+            } else {
+                btn1.classList.remove('white');
+                btn1.classList.add("dark");
+                document.body.style.backgroundColor = "white"
+                btn1.innerHTML = "어둡게보기";
+                for (var i = 0; i < no.length; i++) {
+                    no[i].style.color = "black";
+                }
+            }
+        }
+
+        btn2.onclick = function () {
+            if (inner1.classList.contains("inner1") == true) {
+                inner1.classList.remove("inner1");
+                inner1.replaceChildren();
+
+                btn2.innerHTML = "상세보기"
+
+                var p1 = document.createElement("p");
+                p1.innerHTML = "홍길자"
+                var p2 = document.createElement("p");
+                p2.innerHTML = "20세"
+                var p3 = document.createElement("p");
+                p3.innerHTML = "능력단위"
+                var p4 = document.createElement("p");
+                p4.innerHTML = "java, css"
+
+                inner1.appendChild(p1);
+                inner1.appendChild(p2);
+                inner1.appendChild(p3);
+                inner1.appendChild(p4);
+            } else {
+                inner1.classList.add("inner1");
+                btn2.innerHTML = "이름보기"
+                inner1.replaceChildren();
+                var p1 = document.createElement("p");
+                p1.innerHTML = "자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다"
+                var a1 = document.createElement("a");
+                a1.href = "href=https://www.naver.com"
+                a1.innerHTML = '위키백과'
+
+                inner1.appendChild(p1);
+                inner1.appendChild(a1);
+            }
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

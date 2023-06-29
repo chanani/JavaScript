@@ -46,7 +46,7 @@
         todoBtn.onclick = function () {
             var ul = document.querySelector(".listbox")
             var li = document.createElement("li");
-            var sum = '<button onclick="x()">x</button>'
+            var sum = '<button onclick="x(event)">x</button>'
             if (put.length == 2) {
                 li.innerHTML = put[1].value + sum;
                 ul.appendChild(li);
@@ -58,9 +58,10 @@
             }
         }
         
-        function x(){
-            var li = document.getElementsByTagName("li");
-            li[0].remove();
+        function x(event){
+            console.log(event);
+            var li = event.target.parentNode;
+            li.remove();
         }
 
     </script>

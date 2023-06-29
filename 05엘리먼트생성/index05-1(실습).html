@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>할일 목록</h3>
+    
+    <form class="myForm">
+        
+        <h3 class="nameTitle"></h3>
+        <input type="text" placeholder="이름을 입력하세요" class="nameInput">
+        <button type="button" id="nameBtn">확인</button>        
+    </form>
+
+    <form class="todoForm">
+        <input type="text" placeholder="할일을 작성하세요" class="todoInput">
+        <button type="button" id="todoBtn">확인</button>
+        <ul class="todoList">
+
+        </ul>
+    </form>
+
+        <script>
+            var myForm = document.querySelector('.myForm');
+
+            var nameTitle = myForm.querySelector(".nameTitle");
+            var nameInput = myForm.querySelector(".nameInput");
+            var nameBtn = myForm.querySelector("#nameBtn");
+
+            nameBtn.addEventListener('click', function(){
+                nameTitle.innerHTML = nameInput.value + "님 환영합니다.";
+                nameInput.value = ""; // 값을 공백으로
+                nameInput.style.display = 'none';
+                nameBtn.style.display = 'none';
+            });
+
+            ////////////////////////////////////////////////////
+            var todoForm = document.querySelector('.todoForm');
+
+            var todoList = todoForm.querySelector('.todoList');
+            var todoInput = todoForm.querySelector('.todoInput');
+            var todoBtn = todoForm.querySelector('#todoBtn');
+            
+
+            todoBtn.addEventListener('click', function(){
+                var text = todoInput.value; // 값
+                todoInput.value = ''; // 공백
+
+                var li = document.createElement("li");
+                li.innerHTML = text;
+
+                var button = document.createElement('button');
+                button.innerHTML = '삭제';
+                button.type = 'button';
+
+                // button이 동적으로 생성될 떄 (인라인ok, 기본ok, 표준ok)
+                button.onclick = del;
+
+                li.appendChild(button);
+
+                todoList.appendChild(li);
+
+            });
+
+            function del(){
+                this.parentElement.remove();
+            }
+
+
+        </script>
+
+
+</body>
+</html>
