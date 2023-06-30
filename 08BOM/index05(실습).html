@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-size: cover
+        }
+
+        .bgImg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /*z방향 가장 아래로*/
+            animation: fadeIn .5s linear;
+            /*아래 키프레스 fadeIn호출*/
+        }
+
+
+        .clock h2 {
+            color: white;
+            text-align: center;
+            margin-top: 300px;
+            font-size: 250px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="bd" data-img='{"1": "img/1.jpg", "2":"img/2.jpg", "3": "img/3.jpg", "4": "img/4.jpg"}'>
+    <!-- Object의 길이를 확인하는 문법은 검색 -->
+    <!-- 
+        배경을 넣을 이미지의 형태 <img class="bgImg" src="##"> 
+        를 body의 하위자식으로 추가하는 방향으로 코드를 작성하세요.
+    -->
+
+    <div class="clock">
+        <h2>00:00:00</h2>
+    </div>
+
+
+    <script>
+        var num = 1;
+
+        var bd = document.querySelector(".bd");
+        var bgImg2 = document.createElement("img"); // 이미지태그 생성
+        var img_data = bd.dataset.img; // data태그 배열로 불러오기
+        var obj = JSON.parse(img_data); // 불러온 배열 JSON문자열로 변경
+        bgImg2.src = obj[num]; // 이미지 대그에 문자열 추가
+        bgImg2.classList.add("bgImg");
+        bd.appendChild(bgImg2);
+        var clock = document.querySelector('.clock > h2');
+
+        var num = 2;
+        setInterval(function () {
+            var bgImg = document.createElement("img"); // 이미지태그 생성
+            var img_data = bd.dataset.img; // data태그 배열로 불러오기
+            var obj = JSON.parse(img_data); // 불러온 배열 JSON문자열로 변경
+            bgImg2.src = obj[num]; // 이미지 태그에 문자열 추가
+            bgImg2.classList.add("rm");
+            num++; // 
+            var imgClass = document.querySelector('.rm');
+            bd.removeChild(bgImg2); // 기존 이미지 삭제
+            bd.appendChild(bgImg2);
+            if (num > 4) {
+                num = 1;
+            }
+        }, 5000);
+
+
+            
+        setInterval(function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            clock.innerHTML = hour + ":" + minute + ":" + second;
+        }, 1000);
+
+
+
+
+
+    </script>
+</body>
+
+</html>

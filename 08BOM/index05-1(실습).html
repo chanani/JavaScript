@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <h3>네이버 타이머 도전하기</h3>
+        <p>조건</p>
+        <ol>
+            <li>select태그는 시간:99 or 분:60 or 초:60으로 화면이 생성될 때 엘리먼트 생성기법으로 처리합니다.</li>
+            <li>시간설정 버튼을 클릭하면 시간이 세팅됩니다.</li>
+            <li>타이머시작버튼은 토글형태로 타이머가 동작중이라면 일시정지 버튼으로 활성화 됩니다</li>
+            <li>사용자가 버튼을 잘못클릭하는 경우를 고려하여, 어떠한 경우라도 중복으로 타이밍이 발생되면 안됩니다.</li>
+        </ol>
+    </div>
+
+    <h3>시간을 선택하세요</h3>
+    <select class="hh">
+
+    </select>
+    <select class="mm">
+
+    </select>
+    <select class="ss">
+
+    </select>
+    <button type="button" id="setTime">시간설정</button>
+    <button type="button" id="startTime">타이머시작</button>
+
+    <div class="clock">
+        <h2>00:00:00</h2>
+    </div>
+
+    <script>
+        var hh = document.querySelector('.hh');
+        var mm = document.querySelector('.mm');
+        var ss = document.querySelector('.ss');
+        var setTime = document.getElementById("setTime");
+        var startTime = document.getElementById("startTime");
+        var clock = document.querySelector('.clock > h2');
+
+        for (var i = 0; i <= 99; i++) {
+            var op = document.createElement("option");
+            op.innerHTML = i;
+            hh.appendChild(op);
+        }
+        for (var i = 0; i <= 60; i++) {
+            var op = document.createElement("option");
+            op.innerHTML = i;
+            mm.appendChild(op);
+        }
+        for (var i = 0; i <= 60; i++) {
+            var op = document.createElement("option");
+            op.innerHTML = i;
+            ss.appendChild(op);
+        }
+        setTime.onclick = function () {
+            var time_inner = ""
+            if (hh.value < 10) {
+                time_inner += "0" + hh.value + ":";
+            } else {
+                ime_inner += hh.value + ":";
+            }
+
+            if (mm.value < 10) {
+                time_inner += "0" + mm.value + ":";
+            } else {
+                time_inner += mm.value + ":";
+            }
+
+            if (ss.value < 10) {
+                time_inner += "0" + ss.value;
+            } else {
+                time_inner += ss.value;
+            }
+            clock.innerHTML = time_inner;
+        }
+
+        var s = 1000;
+        startTime.onclick = function () {
+            startTime.innerHTML = "일시정지";
+            var stop = setInterval(function () {
+                var date = new Date();
+                var present_time = hh.value * 3600000 + mm.value * 60000 + ss.value * 1000 - s;
+                var hour = parseInt(present_time / 1000 / 60 / 60);
+                var minute = parseInt((present_time - (hour * 1000 * 60 * 60)) / 1000 / 60);
+                var second = (present_time - (hour * 1000 * 60 * 60) - (minute * 1000 * 60)) / 1000;
+                s += 1000;
+                result_time = "";
+
+                if (hour < 10) {
+                    result_time += "0" + hour + ":";
+                } else {
+                    result_time += hour + ":";
+                }
+                if (minute < 10) {
+                    result_time += "0" + minute + ":";
+                } else {
+                    result_time += minute + ":";
+                }
+                if (second < 10) {
+                    result_time += "0" + second;
+                } else {
+                    result_time += second;
+                }
+                clock.innerHTML = result_time;
+                if(hour == 0 && minute == 0 && second == 0){
+                    clearInterval(stop);
+                }
+
+                startTime.onclick = function (){
+                    startTime.innerHTML = "타이머시작";
+                    clearInterval(stop);
+                }
+            }, 1000);
+        }
+
+        
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
