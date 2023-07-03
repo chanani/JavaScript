@@ -82,7 +82,7 @@
             if (num > 4) {
                 num = 1;
             }
-        }, 5000);
+        }, 8000);
 
 
             
@@ -91,7 +91,9 @@
             var hour = date.getHours();
             var minute = date.getMinutes();
             var second = date.getSeconds();
-            clock.innerHTML = hour + ":" + minute + ":" + second;
+            clock.innerHTML = (hour < 10 ? "0" + hour : hour) + ":" + 
+                                (minute < 10 ? "0" + minute : minute) + ":" + 
+                                (second < 10 ? "0" + second : second);
         }, 1000);
 
 

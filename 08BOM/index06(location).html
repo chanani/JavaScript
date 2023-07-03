@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btn">이동</button>
+    <button onclick="history.go(1)">앞으로가기</button>
+
+    <script>
+        var btn = document.getElementById("btn");
+        btn.onclick = function(){
+            location.href = "index06.html";
+
+            // replaceState - 기록을 변경
+            history.replaceState({data:'x'}, null, null); // 데이터, 제목, url
+        }
+
+        // replaceState로 저장한 데이터를 확인할 수 있음
+        console.log(history.state); 
+
+        if(history.state == null){
+            alert('이 경고창은 처음만 실행됩니다.');
+        }
+
+        
+
+
+
+
+
+
+        // reload는 새로고침(좋은 코드는 아님)
+        /* setInterval(function(){
+            location.reload();
+        }, 5000); */
+
+
+
+
+    </script>
+
+</body>
+</html>
