@@ -15,14 +15,21 @@
 
     <script>
         var cartList = document.querySelector(".cartList");
-        var img = document.createElement("img");
-        img.src = localStorage.getItem("0");
-        img.style.width = "500px"
-        cartList.appendChild(img);
-        var img = document.createElement("img");
-        img.src = localStorage.getItem("1");
-        img.style.width = "500px"
-        cartList.appendChild(img)
+        // 로컬스토리지 가져오기
+        var arr = JSON.parse(localStorage.getItem("like"));
+
+        if(arr != null){ // 값이 존재함
+            for(var i = 0; i < arr.length; i++){
+                var img = document.createElement("img");
+                img.src = arr[i] // src
+                img.width = 200;
+                cartList.appendChild(img);
+            }
+        } else{ // 값이 없음
+            cartList.innerHTML = "최신정보가 없습니다."
+        }
+
+        
     </script>
 
 </body>

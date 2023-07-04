@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 동기 = 순차적으로 실행
+        // 비동기 = 비순차적으로 실행
+
+        /* console.log(1);
+        fetch('hi.txt').then(function(response){
+            response.text().then(function(text){
+                console.log(text);
+            })
+        })
+        console.log(2); */
+
+
+        // 2nd
+        // fetch를 사용하면 promise객체를 반환 (상태를 가지고 있는 객체)
+        // pending = 대기중
+        // fulfilled = 성공
+        // reject = 실패(요청거절)
+
+
+        // var promise = fetch("hi.txt");
+        // promise.then(콜백);
+
+        // promise객체 안에는 then(콜백) 함수를 사용할 수 있습니다.
+        // 콜백함수 = 콜했을 때 백 받을 약속된 함수
+        //fetch('hi.txt').then(xxx)
+
+        // 콜백함수
+        /* function xxx(response){
+            console.log(response)
+        } */
+
+        // 3nd
+        // text()는 body에 있는 데이터를 문자열로 변환 - return : promise객체
+        // JSON()는 body에 있는 데이터를 object로 반환 = return : promise객체
+
+        /* fetch('hi.txt').then(function(response){
+            console.log(response.text()); // promise
+        }) */
+
+
+        // 4nd
+        /* fetch('hi.txt').then(function(response){
+            if(response.status != 200){
+                alert('통신에 실패했습니다.')
+                return;
+            }
+            response.text().then(function(data){
+                console.log(data);
+            })
+        }); */
+
+       /*  fetch('hi.txt').then(function (response) {
+            if (response.status != 200) {
+                console.log('통신에 실패했습니다.');
+                return;
+            }
+            return response.text(); // 이 결과는 fetch함수의 리턴으로 연결
+        }).then(function (data) {
+            console.log(1);
+            return data;
+        }).then(function (data) {
+            console.log(2);
+            return data;
+        }).then(function (data) {
+            console.log(data);
+        }).catch(function (edge) {
+            console.log(e); // 에러시에 실행됨
+        }) */
+
+
+
+        fetch('hi.json').then(function(response){
+           return  response.json();
+        }).then(function(result){
+            console.log(result);
+            for(var i in result){
+                console.log(result[i])
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>

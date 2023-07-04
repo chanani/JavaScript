@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .movieList{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 1800px;
+            padding: 30px;
+            margin: 0 auto;            
+        }
+        .movieList .movie {
+            flex-basis:33.3333%;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .movieList .movie img {
+            position: absolute;
+            left: 0;
+            top: -20px;
+        }
+        .movieList .movie .inner {
+            padding-left: 250px;
+        }
+
+        .movieList .movie .summary {
+            height: 200px;
+            overflow: hidden;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="movieList">
+        <!--  <div class="movie">
+            <img src="#" alt="">
+            <div class="inner">
+                <h3>제목</h3>
+                <p>써머리</p>
+                <ul>
+                    <li>장르</li>
+                    <li>장르</li>
+                </ul>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+
+
+
+
+
+    </script>
+
+
+
+
+
+    <script>
+        var path = "https://raw.githubusercontent.com/yopy0817/data_example/master/hello.json";
+
+        /* fetch(path).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+            console.log(data.bno);
+            console.log(data.title);
+            console.log(data.content);
+        }) */
+
+
+        fetch('https://yts.mx/api/v2/list_movies.json?limit=30&quality=1080p&sort_by=rating').then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            console.log(result);
+
+            // var arr = result['data']['movies'];
+            var arr = result.data.movies;
+            console.log(arr);
+            // medium_cover_image, title, summary, genres : 꺼내올 값
+
+            var sum = ""; // 화면을 그릴 문자열
+            for (var i = 0; i < arr.length; i++) {
+                var image = arr[i].medium_cover_image;
+                var title = arr[i].title;
+                var summary = arr[i].summary;
+                var genres = arr[i].genres;
+
+                sum += '<div class="movie">'
+                sum += '<img src="' + image + '">'
+                sum += '<div class="inner">'
+                sum += '<h3 class="title">' + title + '</h3>'
+                sum += '<p class="summary">' + summary + '</p>'
+                sum += '<ul class="genres">'
+                for (var j in genres) {
+                    sum += '<li>' + genres[j] + '</li>'
+                }
+                sum += '</ul>'
+                sum += '</div>'
+                sum += '</div>'
+
+            } // end for
+            document.querySelector(".movieList").innerHTML = sum;
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
